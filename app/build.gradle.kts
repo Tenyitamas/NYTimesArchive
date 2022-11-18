@@ -98,7 +98,6 @@ dependencies {
 
     implementation(Coil.coilCompose)
 
-
     implementation(Google.material)
 
     implementation(Retrofit.okHttp)

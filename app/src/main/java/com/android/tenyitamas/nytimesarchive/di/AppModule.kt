@@ -3,6 +3,7 @@ package com.android.tenyitamas.nytimesarchive.di
 import com.android.tenyitamas.nytimesarchive.data.remote.ArchiveApi
 import com.android.tenyitamas.nytimesarchive.data.repository.ArchiveRepositoryImpl
 import com.android.tenyitamas.nytimesarchive.domain.repository.ArchiveRepository
+import com.android.tenyitamas.nytimesarchive.domain.use_case.GetArchives
 import com.android.tenyitamas.nytimesarchive.util.ApiConstants.Companion.ARCHIVE_API_BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -44,4 +45,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideArchiveRepository(api: ArchiveApi): ArchiveRepository = ArchiveRepositoryImpl(api)
+
+    @Provides
+    @Singleton
+    fun provideGetArchivesUseCase(repository: ArchiveRepository) = GetArchives(repository)
 }

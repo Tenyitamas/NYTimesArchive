@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ArchiveApi {
 
-    @GET("/{year}/{month}.json")
+    @GET("{year}/{month}.json")
     suspend fun getArchives(
         @Path("year")
         year: Int,

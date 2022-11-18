@@ -43,5 +43,5 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideArchiveRepository(api: ArchiveApi) = ArchiveRepositoryImpl(api)
+    fun provideArchiveRepository(api: ArchiveApi): ArchiveRepository = ArchiveRepositoryImpl(api)
 }

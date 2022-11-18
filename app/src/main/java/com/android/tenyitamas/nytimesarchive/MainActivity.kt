@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.android.tenyitamas.nytimesarchive.presentation.archives.ArchiveScreen
 import com.android.tenyitamas.nytimesarchive.ui.theme.NYTimesArchiveTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    ArchiveScreen(onItemClick = {}, modifier = Modifier.fillMaxSize())
                 }
             }
         }

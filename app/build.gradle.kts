@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,6 +7,8 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-parcelize")
 }
+
+
 
 android {
     namespace = "com.android.tenyitamas.nytimesarchive"
@@ -21,9 +25,18 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val apiKeyProperties = readProperties(rootProject.file("apikey.properties"))
+        buildConfigField(
+            "String",
+            "NYTIMES_API_KEY",
+            apiKeyProperties["NYTIMES_API_KEY"] as String
+        )
+
     }
 
     buildTypes {
+
         release {
             isMinifyEnabled =  false
             proguardFiles(
@@ -49,6 +62,12 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+fun readProperties(propertiesFile: File) = Properties().apply {
+    propertiesFile.inputStream().use { fis ->
+        load(fis)
     }
 }
 
@@ -86,6 +105,7 @@ dependencies {
     implementation(Retrofit.retrofit)
     implementation(Retrofit.okHttpLoggingInterceptor)
     implementation(Retrofit.moshiConverter)
+    implementation(Retrofit.gsonConverter)
 
     kapt(Room.roomCompiler)
     implementation(Room.roomKtx)
